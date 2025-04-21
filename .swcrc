@@ -1,0 +1,24 @@
+{
+  "$schema": "https://swc.rs/schema.json",
+  "exclude": ["node_modules", ".*\\.spec|test\\.(j|t)s$"],
+  "minify": true,
+  "module": {
+    "type": "commonjs"
+  },
+  "jsc": {
+    "target": "esnext",
+    "baseUrl": "./",
+    "parser": {
+      "syntax": "typescript",
+      "tsx": false,
+      "decorators": true
+    },
+    "transform": {
+      "optimizer": {
+        "jsonify": {
+          "minCost": 1024
+        }
+      }
+    }
+  }
+}

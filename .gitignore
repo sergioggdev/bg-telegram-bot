@@ -1,0 +1,39 @@
+# Logs
+logs
+_.log
+npm-debug.log_
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
+
+# Runtime data
+pids
+_.pid
+_.seed
+\*.pid.lock
+
+# Dependency directories
+node_modules/
+
+# dotenv environment variable files
+.env
+.pro.env
+
+# VSCode IDE
+.vscode/*.code-workspace
+.vscode/launch.json
+.vscode/settings.json
+
+# Github files
+gha-creds-*.json
+
+# MAC files
+.DS_Store
+
+# Build folder
+dist/
+build/
