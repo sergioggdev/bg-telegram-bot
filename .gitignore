@@ -22,6 +22,8 @@ node_modules/
 # dotenv environment variable files
 .env
 .pro.env
+app.yaml
+!.env.local
 
 # VSCode IDE
 .vscode/*.code-workspace

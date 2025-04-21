@@ -1,5 +1,6 @@
 import { Telegraf } from 'telegraf';
 import { config } from 'dotenv';
+import express from 'express';
 
 import { defineCommandsList, groupOnly } from './config';
 import { defineSearchInlineQuery } from './inline/search-inline';
@@ -28,6 +29,17 @@ config();
 if (!process.env.BOT_TOKEN) throw new Error('BOT_TOKEN is not defined');
 
 try {
+  const app = express();
+  const PORT = process.env.PORT || 3000;
+
+  app.get('/', (req, res) => {
+    res.status(200).send('OK');
+  });
+
+  app.listen(PORT, () => {
+    console.log(`Servidor Express escuchando en el puerto ${PORT}`);
+  });
+
   const bot = new Telegraf(process.env.BOT_TOKEN);
 
   // Config Definitions

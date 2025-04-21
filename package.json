@@ -4,7 +4,9 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "dev": "nodemon src/main.ts"
+    "dev": "nodemon src/main.ts",
+    "build": "swc src -d dist",
+    "start": "node dist/src/main.js"
   },
   "author": "",
   "license": "ISC",
@@ -16,7 +18,9 @@
     "tsconfig-paths": "^4.2.0"
   },
   "dependencies": {
+    "@types/express": "^5.0.1",
     "dotenv": "^16.5.0",
+    "express": "^5.1.0",
     "telegraf": "^4.16.3"
   }
 }
