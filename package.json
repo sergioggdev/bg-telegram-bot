@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon src/main.ts",
     "build": "swc src -d dist",
-    "start": "node dist/src/main.js"
+    "start": "node dist/src/main.js",
+    "upload": "gcloud app deploy"
   },
   "author": "",
   "license": "ISC",

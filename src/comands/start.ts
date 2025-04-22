@@ -16,8 +16,10 @@ export const defineStartCmd = (bot: Telegraf) => {
     return ctx.reply(
       '¡Bienvenido! ¿Qué te gustaría hacer?',
       Markup.inlineKeyboard([
-        [Markup.button.callback('Quedadas', 'quedadas')],
-        // [Markup.button.callback('Ver subcripccion', 'option_2')],
+        [Markup.button.callback('Ver y crear quedadas', 'quedadas')],
+        [Markup.button.callback('Ver usuarios', 'users')],
+        [Markup.button.callback('Ver tu perfil', 'perfil')],
+        [Markup.button.callback('Mostrar ayuda', 'help')],
       ]),
     );
   });
