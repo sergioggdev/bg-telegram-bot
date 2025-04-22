@@ -17,13 +17,7 @@
 node_modules/
 
 # Archivos de desarrollo y configuración:
+dist/
 .editorconfig
-.prettierignore
-.prettierrc
-.swcrc
 .env
 .env.local
-tsconfig.json
-nodemon.json
-*.ts
-*.md

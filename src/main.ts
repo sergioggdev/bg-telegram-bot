@@ -30,14 +30,14 @@ if (!process.env.BOT_TOKEN) throw new Error('BOT_TOKEN is not defined');
 
 try {
   const app = express();
-  const PORT = process.env.PORT || 3000;
+  const PORT = process.env.PORT || 3005;
 
   app.get('/', (req, res) => {
-    res.status(200).send('OK');
+    res.status(200).send(`v${process.env.VERSION}`);
   });
 
   app.listen(PORT, () => {
-    console.log(`Servidor Express escuchando en el puerto ${PORT}`);
+    console.log(`Servidor Express escuchando en http://localhost:${PORT}`);
   });
 
   const bot = new Telegraf(process.env.BOT_TOKEN);
