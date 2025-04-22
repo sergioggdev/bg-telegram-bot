@@ -17,6 +17,8 @@ Este bot te ayuda a organizar y unirte a quedadas de juegos de mesa. Puedes ver 
 /start - Inicia el bot y muestra el menú principal
 /help - Muestra este mensaje de ayuda
 /quedadas - Muestra las quedadas disponibles y te permite crear nuevas
+/users - Muestra la lista de usuarios y sus perfiles
+/perfil - Muestra tu perfil
 
 *Funcionalidades:*
 • Ver resumen de todas las quedadas en formato texto
