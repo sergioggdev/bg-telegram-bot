@@ -11,12 +11,13 @@ import {
 } from './default-msg';
 
 const API_URL = 'https://boardgamegeek.com/xmlapi/';
+const cache_time = 300;
 
 export const defineSearchInlineQuery = (bot: Telegraf) => {
   bot.on('inline_query', async ctx => {
     const query = ctx.inlineQuery?.query || '';
 
-    if (!query) return await ctx.answerInlineQuery([emptyDefaultArticle], { cache_time: 60 });
+    if (!query) return await ctx.answerInlineQuery([emptyDefaultArticle], { cache_time });
 
     try {
       const idResponse = await axios.get(
@@ -29,7 +30,7 @@ export const defineSearchInlineQuery = (bot: Telegraf) => {
       const idBoardgamesXML = idData?.boardgames?.boardgame || [];
       const idBoardgames = Array.isArray(idBoardgamesXML) ? idBoardgamesXML : [idBoardgamesXML];
       if (!idBoardgames.length)
-        return await ctx.answerInlineQuery([emptyGamesArticle], { cache_time: 60 });
+        return await ctx.answerInlineQuery([emptyGamesArticle], { cache_time });
 
       // La API de la BBG solo permite pedir imagenes de max 20 juegos a la vez
       const idGames = idBoardgames.slice(0, 10);
@@ -44,10 +45,10 @@ export const defineSearchInlineQuery = (bot: Telegraf) => {
       const results: InlineQueryResult[] = games.map(gamesArticle(idGames));
 
       // Devolver los resultados
-      return await ctx.answerInlineQuery(results, { cache_time: 60 });
+      return await ctx.answerInlineQuery(results, { cache_time });
     } catch (error) {
       console.error('Error searching BGG:', error);
-      return await ctx.answerInlineQuery([errorGamesArticle], { cache_time: 30 });
+      return await ctx.answerInlineQuery([errorGamesArticle], { cache_time });
     }
   });
 };
