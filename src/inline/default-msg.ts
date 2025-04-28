@@ -44,9 +44,9 @@ export const gamesArticle =
 
     const messageText =
       `🎲 *${gameName}*\n` +
-      `👥 Minimo de jugadores: ${game.minplayers}\n` +
-      `👥 Máximo de jugadores: ${game.maxplayers}\n` +
-      `⏱️ Tiempo de juego: ${game.playingtime} minutos\n` +
+      `👥 Min jugadores: ${game.minplayers}\n` +
+      `👥 Max jugadores: ${game.maxplayers}\n` +
+      `⏱️ Tiempo: ${game.playingtime} minutos\n` +
       yearpublished +
       `🔗 [Ver en BGG](https://boardgamegeek.com/boardgame/${game.objectid})\n`;
 
