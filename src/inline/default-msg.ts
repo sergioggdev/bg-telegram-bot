@@ -30,28 +30,47 @@ export const errorGamesArticle: InlineQueryResult = {
   },
 };
 
-export const gamesArticle = (game: any): InlineQueryResult => {
-  const gameName = Array.isArray(game.name)
-    ? game.name.find((name: any) => name.primary === 'true')['#text']
-    : game.name['#text'];
+export const gamesArticle =
+  (gamesSearch: any) =>
+  (game: any): InlineQueryResult => {
+    const searchName = gamesSearch.find((search: any) => search.objectid === game.objectid);
 
-  // Crear el texto del mensaje
-  const messageText =
-    `🎲 *${gameName}*\n` +
-    `${game.yearpublished ? `📅 Año: ${game.yearpublished}\n` : ''}` +
-    `🔗 [Ver en BGG](https://boardgamegeek.com/boardgame/${game.objectid})`;
+    console.log('Search:', searchName);
+    const gameName = decodeHtmlEntities(
+      searchName?.name['#text'] || searchName?.name || 'Juego desconocido',
+    );
+    const descripción = decodeHtmlEntities(game.description || 'Descripción no disponible');
+    const yearpublished = game.yearpublished ? `📅 Año: ${game.yearpublished}\n` : '';
 
-  return {
-    hide_url: false,
-    type: 'article',
-    id: game.objectid,
-    title: gameName || 'Juego desconocido',
-    description: game.description || 'Descripción no disponible',
-    thumbnail_url: game.thumbnail,
-    url: `https://boardgamegeek.com/boardgame/${game.objectid}`,
-    input_message_content: { message_text: messageText, parse_mode: 'Markdown' },
-    reply_markup: {
-      inline_keyboard: [[{ text: 'Crear quedada', callback_data: 'create_event' }]],
-    },
+    const messageText =
+      `🎲 *${gameName}*\n` +
+      `👥 Minimo de jugadores: ${game.minplayers}\n` +
+      `👥 Máximo de jugadores: ${game.maxplayers}\n` +
+      `⏱️ Tiempo de juego: ${game.playingtime} minutos\n` +
+      yearpublished +
+      `🔗 [Ver en BGG](https://boardgamegeek.com/boardgame/${game.objectid})\n`;
+
+    return {
+      hide_url: false,
+      type: 'article',
+      id: game.objectid,
+      title: gameName,
+      description: descripción,
+      thumbnail_url: game.thumbnail,
+      url: `https://boardgamegeek.com/boardgame/${game.objectid}`,
+      input_message_content: { message_text: messageText, parse_mode: 'Markdown' },
+      reply_markup: {
+        inline_keyboard: [[{ text: 'Crear quedada', callback_data: 'create_event' }]],
+      },
+    };
   };
+
+const decodeHtmlEntities = (text: string): string => {
+  return text
+    .replace(/&#039;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&#(\d+);/g, (match, dec) => String.fromCharCode(dec));
 };
