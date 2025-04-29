@@ -3,3 +3,4 @@ export * from './perfil';
 export * from './quedadas';
 export * from './start';
 export * from './users';
+export * from './groups';

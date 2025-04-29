@@ -10,6 +10,7 @@ import {
   defineQuedadasCmd,
   defineUsersCmd,
   definePerfilCmd,
+  defineGroupsCmd,
 } from './comands';
 import {
   defineQuedadasAction,
@@ -51,6 +52,7 @@ try {
   defineQuedadasCmd(bot);
   defineUsersCmd(bot);
   definePerfilCmd(bot);
+  defineGroupsCmd(bot);
 
   // Action Definitions
   defineQuedadasAction(bot);

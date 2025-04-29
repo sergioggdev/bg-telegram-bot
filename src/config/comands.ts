@@ -8,6 +8,7 @@ export const defineCommandsList = (bot: Telegraf) => {
       { command: 'perfil', description: 'Ver tu perfil' },
       { command: 'start', description: 'Iniciar el bot' },
       { command: 'help', description: 'Mostrar ayuda' },
+      { command: 'grupos', description: 'Listado de grupos' },
     ],
     { scope: { type: 'all_private_chats' } },
   );

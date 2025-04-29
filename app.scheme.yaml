@@ -11,8 +11,8 @@ automatic_scaling:
 env_variables:
   BUCKET_NAME: "enclave-bot-telegram"
   BOT_TOKEN: 
-  AUTHORIZED_GROUPS: "-1002647413825"
-  VERSION: 1.0.3
+  AUTHORIZED_GROUPS: ""
+  VERSION: 1.0.4
 
 build_env_variables:
   GOOGLE_NODE_RUN_SCRIPTS: "build"
