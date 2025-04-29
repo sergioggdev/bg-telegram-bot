@@ -20,9 +20,7 @@ export const defineSearchInlineQuery = (bot: Telegraf) => {
     if (!query) return await ctx.answerInlineQuery([emptyDefaultArticle], { cache_time });
 
     try {
-      const idResponse = await axios.get(
-        `${API_URL}search?search=${encodeURIComponent(query)}&exact=1`,
-      );
+      const idResponse = await axios.get(`${API_URL}search?search=${encodeURIComponent(query)}`);
       const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '' });
       const idData = parser.parse(idResponse.data);
 
@@ -33,7 +31,7 @@ export const defineSearchInlineQuery = (bot: Telegraf) => {
         return await ctx.answerInlineQuery([emptyGamesArticle], { cache_time });
 
       // La API de la BBG solo permite pedir imagenes de max 20 juegos a la vez
-      const idGames = idBoardgames.slice(0, 10);
+      const idGames = idBoardgames.slice(0, 5);
 
       // TODO llamar a la API para sacar mas info del juego
       const gamesID = idGames.map((game: any) => game.objectid).join(',');
