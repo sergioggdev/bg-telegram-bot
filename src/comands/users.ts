@@ -1,8 +1,8 @@
 import { Telegraf, Markup } from 'telegraf';
-import { membersOnly } from 'src/config/auth';
+import { membersRole } from 'src/config/auth';
 
 export const defineUsersCmd = (bot: Telegraf) => {
-  bot.command('users', membersOnly(), ctx => {
+  bot.command('users', membersRole(), ctx => {
     // const { username: userName, id: userID } = ctx.from || {};
     // const isAdmin = await findUser({ userID, userName, searchYypes: adminTypes });
 

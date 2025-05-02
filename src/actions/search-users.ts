@@ -1,9 +1,9 @@
 import { Telegraf, Markup } from 'telegraf';
 
-import { membersOnly } from 'src/config';
+import { membersRole } from 'src/config';
 
 export const defineSearchUsersAction = (bot: Telegraf) => {
-  bot.action('search_user', membersOnly(), async ctx => {
+  bot.action('search_user', membersRole(), async ctx => {
     return ctx.editMessageText(
       '🔍 *BÚSQUEDA DE USUARIOS*\n\n' +
         'Para buscar un usuario, responde a este mensaje con el userName de teelgram del usuario a buscar.\n\n' +

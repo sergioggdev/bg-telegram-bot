@@ -8,11 +8,14 @@ automatic_scaling:
   min_idle_instances: 1
   max_idle_instances: 1
 
+
 env_variables:
+  VERSION: 1.0.6
   BUCKET_NAME: "enclave-bot-telegram"
-  BOT_TOKEN: 
-  AUTHORIZED_GROUPS: ""
-  VERSION: 1.0.5
+  BOT_TOKEN: ""
+  AUTHORIZED_GROUPS: "-1002647413825"
+  MONGO_URI : ""
+  DB_NAME: ""
 
 build_env_variables:
   GOOGLE_NODE_RUN_SCRIPTS: "build"

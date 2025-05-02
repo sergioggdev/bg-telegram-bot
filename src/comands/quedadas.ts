@@ -1,7 +1,8 @@
+import { visitorRole } from 'src/config';
 import { Telegraf, Markup } from 'telegraf';
 
 export const defineQuedadasCmd = (bot: Telegraf) => {
-  bot.command('quedadas', ctx => {
+  bot.command('quedadas', visitorRole(false), ctx => {
     const chatType = ctx.chat?.type || '';
     const isGroup = chatType.includes('group');
 
@@ -14,9 +15,7 @@ export const defineQuedadasCmd = (bot: Telegraf) => {
 
       return ctx.reply(
         'Abrir conversacion con el bot para apuntarte a alguna quedada',
-        Markup.inlineKeyboard([
-          [Markup.button.url('Apuntarse!', `https://t.me/${botUsername}?start=${startPayload}`)],
-        ]),
+        Markup.inlineKeyboard([[Markup.button.url('Apuntarse!', `https://t.me/${botUsername}?start=${startPayload}`)]]),
       );
     }
 

@@ -9,12 +9,10 @@ export const authGroupOnly = (ctx: Context, next: () => void) => {
   return ctx.reply('Este comando solo puede ser usado en el grupo autorizado.');
 };
 
-export const visitorOnly =
+export const visitorRole =
   (reqPrivate = true) =>
   async (ctx: Context, next: () => void) => {
-    if (reqPrivate)
-      if (!isPrivate(ctx))
-        return ctx.reply('Este comando solo puede ser usado en un chat privado.');
+    if (reqPrivate) if (!isPrivate(ctx)) return ctx.reply('Este comando solo puede ser usado en un chat privado.');
 
     const { username: userName, id: userID, is_bot } = ctx.from || {};
     if (is_bot) return ctx.reply('Los bots no pueden usar este comando.');
@@ -27,12 +25,10 @@ export const visitorOnly =
     if (user) return next();
   };
 
-export const membersOnly =
+export const membersRole =
   (reqPrivate = true) =>
   async (ctx: Context, next: () => void) => {
-    if (reqPrivate)
-      if (!isPrivate(ctx))
-        return ctx.reply('Este comando solo puede ser usado en un chat privado.');
+    if (reqPrivate) if (!isPrivate(ctx)) return ctx.reply('Este comando solo puede ser usado en un chat privado.');
 
     const { username: userName, id: userID, is_bot } = ctx.from || {};
     if (is_bot) return ctx.reply('Los bots no pueden usar este comando.');
@@ -41,12 +37,10 @@ export const membersOnly =
     if (user) return next();
   };
 
-export const adminOnly =
+export const adminRole =
   (reqPrivate = true) =>
   async (ctx: Context, next: () => void) => {
-    if (reqPrivate)
-      if (!isPrivate(ctx))
-        return ctx.reply('Este comando solo puede ser usado en un chat privado.');
+    if (reqPrivate) if (!isPrivate(ctx)) return ctx.reply('Este comando solo puede ser usado en un chat privado.');
 
     const { username: userName, id: userID, is_bot } = ctx.from || {};
     if (is_bot) return ctx.reply('Los bots no pueden usar este comando.');
@@ -55,12 +49,10 @@ export const adminOnly =
     if (user) return next();
   };
 
-export const ownerOnly =
+export const ownerRole =
   (reqPrivate = true) =>
   async (ctx: Context, next: () => void) => {
-    if (reqPrivate)
-      if (!isPrivate(ctx))
-        return ctx.reply('Este comando solo puede ser usado en un chat privado.');
+    if (reqPrivate) if (!isPrivate(ctx)) return ctx.reply('Este comando solo puede ser usado en un chat privado.');
 
     const { username: userName, id: userID, is_bot } = ctx.from || {};
     if (is_bot) return ctx.reply('Los bots no pueden usar este comando.');

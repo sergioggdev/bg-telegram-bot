@@ -1,7 +1,8 @@
+import { visitorRole } from 'src/config';
 import { Telegraf, Markup } from 'telegraf';
 
 export const defineGroupsCmd = (bot: Telegraf) => {
-  bot.command('grupos', ctx => {
+  bot.command('grupos', visitorRole(false), ctx => {
     const chatType = ctx.chat?.type || '';
 
     const helpText = `

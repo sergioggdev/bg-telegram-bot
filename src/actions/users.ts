@@ -1,8 +1,8 @@
-import { membersOnly } from 'src/config';
+import { membersRole } from 'src/config';
 import { Telegraf, Markup } from 'telegraf';
 
 export const defineUsersAction = (bot: Telegraf) => {
-  bot.action('users', membersOnly(), async ctx => {
+  bot.action('users', membersRole(), async ctx => {
     await ctx.answerCbQuery();
 
     return ctx.editMessageText('👥 *GESTIÓN DE USUARIOS*\n\n' + 'Selecciona una opción:', {

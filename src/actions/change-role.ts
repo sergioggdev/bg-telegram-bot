@@ -1,9 +1,9 @@
 import { Mongo } from 'src/class/mongo';
-import { adminOnly } from 'src/config';
+import { adminRole } from 'src/config';
 import { Telegraf, Markup } from 'telegraf';
 
 export const defineChangeRoleAction = (bot: Telegraf) => {
-  bot.action(/^change_role_(.+)$/, adminOnly(), async ctx => {
+  bot.action(/^change_role_(.+)$/, adminRole(), async ctx => {
     await ctx.answerCbQuery();
     const eventId = ctx.match[1];
     const [role, userName] = eventId.split('_');

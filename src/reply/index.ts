@@ -3,10 +3,11 @@ import { handleCreateEventReply } from './create-event';
 import { handleSearchUserReply } from './search-users';
 import { handleCreateUserReply } from './create-user';
 import { message } from 'telegraf/filters';
+import { visitorRole } from 'src/config';
 
 export const defineTextMessageReplies = (bot: Telegraf) => {
   // Un único listener para todos los mensajes de texto
-  bot.on(message('text'), async ctx => {
+  bot.on(message('text'), visitorRole(), async ctx => {
     const replyToMessage = ctx.message.reply_to_message;
     if (!replyToMessage) return;
 

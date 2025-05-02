@@ -1,31 +1,26 @@
 import { Telegraf, Markup } from 'telegraf';
-import { mockUsers } from '../types/user';
+import { visitorRole } from 'src/config';
+import { Mongo } from 'src/class/mongo';
 
 export const definePerfilCmd = (bot: Telegraf) => {
-  bot.command('perfil', async ctx => {
-    // Obtener un usuario aleatorio de mockUsers
-    const randomIndex = Math.floor(Math.random() * mockUsers.length);
-    const usuario = mockUsers[randomIndex];
+  bot.command('perfil', visitorRole(), async ctx => {
+    const { id: userID } = ctx.from || {};
 
-    // Crear mensaje con la información del perfil
-    const perfilText = `
-📋 *PERFIL DE USUARIO*
+    const db = await Mongo.getDb();
+    const user = await db.collection('users').findOne({ userID: userID });
+    if (!user) return ctx.reply('No se encontró el usuario en la base de datos.');
 
-👤 *Nombre:* ${usuario.nombre} ${usuario.apellidos}
-🔰 *Estado:* ${usuario.estado}${
-      usuario.estado === 'visitante' && usuario.visitas
-        ? ` (${usuario.visitas} ${usuario.visitas === 1 ? 'visita' : 'visitas'})`
-        : ''
-    }
-📆 *Fecha de inscripción:* ${usuario.fechaInscripcion}
-`;
+    const perfilText =
+      '📋 *PERFIL DE USUARIO*\n\n' +
+      `👤 Nombre: ${user.name} ${user.surname}\n` +
+      `👤 UserName: ${user.userName}\n` +
+      `🔰 Rol: ${user.type}\n` +
+      `${user.type === 'visitor' ? `Numero de visitas: ${user.visits}` : ''}`;
 
-    // Enviar mensaje con botones para más opciones
     return ctx.reply(perfilText, {
       parse_mode: 'Markdown',
       ...Markup.inlineKeyboard([
         // [Markup.button.callback('Editar perfil', 'edit_profile')],
-        // [Markup.button.callback('« Menú principal', 'start')],
       ]),
     });
   });
