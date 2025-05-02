@@ -1,6 +1,7 @@
-import { Telegraf } from 'telegraf';
+import { Context, Telegraf } from 'telegraf';
 import { handleCreateEventReply } from './create-event';
 import { handleSearchUserReply } from './search-users';
+import { handleCreateUserReply } from './create-user';
 import { message } from 'telegraf/filters';
 
 export const defineTextMessageReplies = (bot: Telegraf) => {
@@ -15,11 +16,11 @@ export const defineTextMessageReplies = (bot: Telegraf) => {
     if (!('text' in replyToMessage)) return;
 
     // Determinar qué tipo de respuesta es y procesarla adecuadamente
-    if (replyToMessage.text?.includes('Para crear una quedada, responde a este mensaje')) {
+    if (replyToMessage.text?.includes('Para crear una quedada, responde a este mensaje'))
       await handleCreateEventReply(ctx);
-    } else if (replyToMessage.text?.includes('Para buscar un usuario, responde a este mensaje')) {
-      await handleSearchUserReply(ctx);
-    }
-    // Se pueden añadir más condiciones para otros tipos de respuestas en el futuro
+    if (replyToMessage.text?.includes('🔍 BÚSQUEDA DE USUARIOS\n')) await handleSearchUserReply(ctx);
+    if (replyToMessage.text?.includes('👥 CREAR USUARIO\n')) await handleCreateUserReply(ctx);
+
+    return;
   });
 };

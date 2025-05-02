@@ -1,62 +1,22 @@
+export type UserType = 'owner' | 'admin' | 'member' | 'disable' | 'visitor';
 export interface User {
-  nombre: string;
-  apellidos: string;
-  estado: 'habilitado' | 'deshabilitado' | 'visitante';
-  visitas?: number;
-  fechaInscripcion: string;
+  name: string;
+  surname?: string;
+  type: UserType;
+  userID?: number;
+  userName: string;
+  visitas: number;
 }
 
-// Mock de usuarios para las pruebas
-export const mockUsers: User[] = [
-  {
-    nombre: 'Adrián',
-    apellidos: 'Sánchez García',
-    estado: 'habilitado',
-    fechaInscripcion: '15/03/2024',
-  },
-  {
-    nombre: 'Sara',
-    apellidos: 'López Martínez',
-    estado: 'deshabilitado',
-    fechaInscripcion: '10/01/2023',
-  },
-  {
-    nombre: 'Carlos',
-    apellidos: 'Rodríguez Pérez',
-    estado: 'visitante',
-    visitas: 2,
-    fechaInscripcion: '05/04/2025',
-  },
-  {
-    nombre: 'Laura',
-    apellidos: 'Fernández Torres',
-    estado: 'visitante',
-    visitas: 3,
-    fechaInscripcion: '20/03/2025',
-  },
-  {
-    nombre: 'Jorge',
-    apellidos: 'Gómez Ruiz',
-    estado: 'habilitado',
-    fechaInscripcion: '12/12/2023',
-  },
-  {
-    nombre: 'Elena',
-    apellidos: 'Díaz Serrano',
-    estado: 'habilitado',
-    fechaInscripcion: '05/02/2024',
-  },
-  {
-    nombre: 'Marcos',
-    apellidos: 'Muñoz Vega',
-    estado: 'deshabilitado',
-    fechaInscripcion: '18/07/2023',
-  },
-  {
-    nombre: 'Sofía',
-    apellidos: 'Castro Navarro',
-    estado: 'visitante',
-    visitas: 1,
-    fechaInscripcion: '10/04/2025',
-  },
+export const visitorTypes: UserType[] = ['visitor'];
+export const memberTypes: UserType[] = ['member', 'admin', 'owner'];
+export const adminTypes: UserType[] = ['admin', 'owner'];
+export const ownerTypes: UserType[] = ['owner'];
+export const disabledTypes: UserType[] = ['disable'];
+export const allTypes: UserType[] = [
+  ...visitorTypes,
+  ...memberTypes,
+  ...adminTypes,
+  ...ownerTypes,
+  ...disabledTypes,
 ];

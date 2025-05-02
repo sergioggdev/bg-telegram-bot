@@ -10,7 +10,6 @@ export const defineGroupsCmd = (bot: Telegraf) => {
 <b>Gneral</b>:
 https://t.me/+1kpGzEkSBuxhYTY0
 
-
 <b>Republica Roma</b>:
 https://t.me/+1kpGzEkSBuxhYTY0
 
@@ -25,6 +24,9 @@ https://t.me/+bJ8jE0Ix4eg5Mjlk
 
 <b>Enclave One Peace</b>:
 https://t.me/+lJtuQIOtm9sxNjJk
+
+<b>Blood on the Enclave Tower</b>:
+https://t.me/+Tb_FyoVeMOAyMTk8
 `;
 
     return ctx.reply(helpText, { parse_mode: 'HTML', disable_web_page_preview: true });
